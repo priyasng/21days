@@ -23,21 +23,28 @@ t.c o(n)
 s.c o(n)
 
 approach 2)
-The idea is to modify the array in-place as you walk through it, while also preserving the original array elements.
+If we use HashSet it will be pretty easy solution. We iterate over the array and put elements one by one in our HashSet, if element already there, it means that we already have seen this element and we put it in our outpur list
 
-We know that all elements are positive initially. When we see k = | A[i] | for the first time, multiply A[k] by -1. The negative sign on index k indicates k has been seen once. As you progress through the array, you will find some j > i such that A[j] = k. Now when you look at A[k], it is already negative (seen once). Thus j is a duplicate.
-t.c o(n)
-s.c o(1)
-public List<Integer> findDuplicates(int[] nums) {
-        final List<Integer> duplicates = new ArrayList<Integer>();
-        for(int i = 0; i < nums.length; i++) {
-            final int n = Math.abs(nums[i]);
-            if(nums[n - 1] < 0) {
-                duplicates.add(n);
-            } else {
-                nums[n - 1] *= -1;
-            }
+But the problem is asking us to not use extra memory other than for the output list. Given the constrainsts (i.e all elements in the range [1, n]) of this problem, we can use nums as a HashSet. We just mark each element nums[nums[i] - 1] with negative sign, i.e turning it into a negative number. What we are doing is essentially mapping nums[i] value to a nums[i] - 1 index. -1 is to account for the fact that array is zero-based. We won't we overflowing our array nums as we are guaranteed the elements will be in [1,n] range.
+
+Important thing to keep in mind, whenever we read a value from nums we should always take it's absolute value, as that value might have been marked negative by previous iterations.
+
+You can also think about this technique as a boolean array, where + of each element means Not seen or False, and - means Seen or True
+
+class Solution {
+    public List<Integer> findDuplicates(int[] nums) {
+        List<Integer> res = new ArrayList<>();
+        
+        for (int i = 0; i < nums.length; i++) {
+            
+            int idx = Math.abs(nums[i]) - 1; // Get the mapped index for nums[i], using Math.abs only once
+            
+            if (nums[idx] < 0) // Check if nums[i] has been seen before, if true then add to the output list
+                res.add(idx + 1); // Need to add +1 as our range is 1-based
+            
+            nums[idx] *= -1; // Unconditionally flip the sign, if it's positive, we want to mark it as negative. But if it's negative, we just recover previous value so that at the end our array is not modified
         }
-        return duplicates;
+        
+        return res;
     }
-    
+}
