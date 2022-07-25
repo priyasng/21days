@@ -1,0 +1,66 @@
+Given an array of integers nums containing n + 1 integers where each integer is in the range [1, n] inclusive.
+
+There is only one repeated number in nums, return this repeated number.
+
+You must solve the problem without modifying the array nums and uses only constant extra space.
+
+ 
+
+Example 1:
+
+Input: nums = [1,3,4,2,2]
+Output: 2
+Example 2:
+
+Input: nums = [3,1,3,4,2]
+Output: 3
+
+
+Approach 1)
+*Sort the array
+*Iterate through array
+*Compare the current to previous number
+*return first number that is equal to predecessor.
+T.C O(nlogn)+O(n)
+S.c O(logn)/O(n)
+
+Approach 2)
+*initialize an empty hashset seen
+*itterate over array and check if current element exixt in hashset.
+*if exist, that no. is duplicate and can be returned right away.
+T.C O(n)
+S.C O(n)
+
+Approach 3)
+Negative marking approach
+T.C O(n)
+S.C O(1)
+
+Approach 4)
+Binary Search
+*Find the smallest no.
+*binary search
+*find mid point
+T.C O(nlogn)
+S.c O(1)
+
+Appraoch 5)
+Array as Hashmap 
+*iterate over array
+*num[0]==num[num[0]]
+if not swap them
+if it is equal then duplicate.
+T.C O(N)
+S.C O(1)
+
+import java.util.*;
+class Solution {
+    public int findDuplicate(int[] nums) {
+        while (nums[0] != nums[nums[0]]) {
+            int nxt = nums[nums[0]];
+            nums[nums[0]] = nums[0];
+            nums[0] = nxt;
+        }
+        return nums[0];
+    }
+}
