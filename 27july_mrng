@@ -1,3 +1,4 @@
+AMAZON
 Set 1
 string
 *https://www.geeksforgeeks.org/print-all-the-duplicates-in-the-input-string/
@@ -8,11 +9,19 @@ string
 Set 2
 mathematics
 *https://leetcode.com/problems/palindrome-number/
-*https://leetcode.com/problems/missing-number/
 *https://leetcode.com/problems/reverse-integer/
 
 Set 3
 matrix
 *https://www.geeksforgeeks.org/maximum-size-rectangle-binary-sub-matrix-1s/
-*https://www.geeksforgeeks.org/find-number-of-islands/
 *https://www.geeksforgeeks.org/given-matrix-o-x-replace-o-x-surrounded-x/
+
+set 4
+Linked List
+*https://leetcode.com/problems/merge-two-sorted-lists/
+*https://leetcode.com/problems/remove-nth-node-from-end-of-list/
+
+set 5
+Stack and queue
+*https://leetcode.com/problems/implement-stack-using-queues/
+*https://practice.geeksforgeeks.org/problems/rotten-oranges2536/1
